@@ -8,17 +8,12 @@
 Greet someone and record the time
 
 <!-- end description -->
-
-# Important CI Note!
-
-If you're seeing the error `The local branch master is behind the remote one, therefore a new version won't be published` in your repository that's based on this repository, it's usually because the `repository.url` in package.json is still referencing this git repository. Semantic release compares to this for node projects, sees that the history is different, and will fail. Simply update your package.json to correctly point to your repository.
-
 <!-- start contents -->
 <!-- end contents -->
 <!-- start usage -->
 
 ```yaml
-- uses: Unsupervisedcom/action-javascript-action-template@undefined
+- uses: Unsupervisedcom/action-wait-for-ports@undefined
   with:
     # Who to greet
     # Default: World
@@ -54,7 +49,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Unsupervisedcom/action-javascript-action-template@v1
+        uses: Unsupervisedcom/action-wait-for-ports@v1
         with:
           who-to-greet: "Mona the Octocat"
       # Use the output from the `hello` step

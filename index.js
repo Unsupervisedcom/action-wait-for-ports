@@ -1,16 +1,22 @@
-// replace with your code, demo from https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require('@actions/core')
+const github = require('@actions/github')
+const tcpPortUsed = require('tcp-port-used');
 
 try {
-    // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+    const ports = core.getInput('ports').split(",")
+    const maxWait = parseInt(core.getInput('max-wait'))
+    const checkInterval = parseInt(core.getInput('check-interval'))
+
+    // wait for ports
+    ports.forEach(port => {
+        core.info(`Waiting for port ${port}`)
+        tcpPortUsed.waitUntilUsed(parseInt(port), checkInterval, maxWait)
+            .then(function () {
+                core.info(`Port ${port} is ready.`);
+            }).catch(error => {
+            core.setFailed(`error waiting for port ${port}: ${error}`)
+        });
+    })
 } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error)
 }

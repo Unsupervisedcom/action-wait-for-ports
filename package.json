@@ -1,6 +1,6 @@
 {
-  "name": "action-javascript-action-template",
-  "version": "1.0.2",
+  "name": "action-wait-for-ports",
+  "version": "1.0.0",
   "description": "Repository template for github javascript actions",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unsupervisedcom/action-javascript-action-template.git"
+    "url": "git+https://github.com/Unsupervisedcom/action-wait-for-ports.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Unsupervisedcom/action-javascript-action-template/issues"
+    "url": "https://github.com/Unsupervisedcom/action-wait-for-ports/issues"
   },
-  "homepage": "https://github.com/Unsupervisedcom/action-javascript-action-template#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/Unsupervisedcom/action-wait-for-ports#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "tcp-port-used": "^1.0.2"
+  }
 }

@@ -1,13 +1,16 @@
-name: 'Hello World' # taken from https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action #
-description: 'Greet someone and record the time'
+name: Wait for ports ##
+description: Waits for ports to be available
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  ports:
+    description: Comma separated list of ports to wait for
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  max-wait:
+    description: Max time in milliseconds to wait
+    required: false
+    default: 30000
+  check-interval:
+    description: How frequently to check ports, in milliseconds
+    default: 5000
 runs:
-  using: 'node16'
-  main: 'index.js'
+  using: node16
+  main: index.js
