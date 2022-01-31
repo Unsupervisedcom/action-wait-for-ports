@@ -1,11 +1,11 @@
 <!-- start title -->
 
-# GitHub Action:Hello World
+# GitHub Action:Wait for ports
 
 <!-- end title -->
 <!-- start description -->
 
-Greet someone and record the time
+Waits for ports to be available
 
 <!-- end description -->
 <!-- start contents -->
@@ -15,17 +15,26 @@ Greet someone and record the time
 ```yaml
 - uses: Unsupervisedcom/action-wait-for-ports@undefined
   with:
-    # Who to greet
-    # Default: World
-    who-to-greet: ""
+    # Comma separated list of ports to wait for
+    ports: ""
+
+    # Max time in milliseconds to wait
+    # Default: 30000
+    max-wait: ""
+
+    # How frequently to check ports, in milliseconds
+    # Default: 5000
+    check-interval: ""
 ```
 
 <!-- end usage -->
    <!-- start inputs -->
 
-| **Input**          | **Description** | **Default** | **Required** |
-| :----------------- | :-------------- | :---------: | :----------: |
-| **`who-to-greet`** | Who to greet    |   `World`   |   **true**   |
+| **Input**            | **Description**                                | **Default** | **Required** |
+| :------------------- | :--------------------------------------------- | :---------: | :----------: |
+| **`ports`**          | Comma separated list of ports to wait for      |             |   **true**   |
+| **`max-wait`**       | Max time in milliseconds to wait               |   `30000`   |  **false**   |
+| **`check-interval`** | How frequently to check ports, in milliseconds |   `5000`    |  **false**   |
 
 <!-- end inputs -->
    <!-- start outputs -->
