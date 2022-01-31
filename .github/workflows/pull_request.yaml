@@ -1,0 +1,29 @@
+name: Validate pull request
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  validate-pr-title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: crazy-max/ghaction-dump-context@v1
+      - uses: amannn/action-semantic-pull-request@v3.4.6
+        with:
+          types: |
+            fix
+            feat
+            norelease
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+  add-dependencies:
+    name: Add dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: crazy-max/ghaction-dump-context@v1
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DEPLOYER_CI_TOKEN }}
+      - uses: bahmutov/npm-install@v1
+      - uses: stefanzweifel/git-auto-commit-action@v4
